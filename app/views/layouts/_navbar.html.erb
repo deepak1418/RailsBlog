@@ -1,0 +1,53 @@
+<header>
+  <nav id='cssmenu'>
+    <br>
+      <%#= link_to( image_tag("logo1.png") , image_path( "logo1.png"))  %>
+
+      <%= link_to root_path do %>
+        <%= image_tag "logo1.png" ,class:"logo"%>
+      <% end %>
+
+    <div id="head-mobile"></div>
+    <div class="button"></div>
+    <ul>
+      <li class='<%= current_class?(root_path) %>'><%= link_to 'HOME', root_path %></li>
+      <li class="<%= current_class?(about_path) %>"> <%= link_to 'ABOUT', about_path %></li>
+      <li class='<%= current_class?(contact_path) %>'><%= link_to 'CONTACT', contact_path %></li>
+<!--      <li><a href='#'>VIDEO</a></li>-->
+      <li><a href='#'>GALLERY</a></li>
+
+      <% if author_signed_in? %>
+<!--        glyphicon glyphicon-plus-->
+
+        <li><a href='#'>AUTHOR</a>
+          <ul>
+            <li> <%= link_to 'Your posts', authors_posts_path %></li>
+            <li class="sub-menu"><a href='#'>Account</a>
+              <ul>
+                <li><%= link_to 'Edit Profile', edit_author_registration_path %></li>
+                <li><%= link_to 'Change Password',authors_password_path %></li>
+              </ul>
+            </li>
+            <li> <%= link_to 'Logout', destroy_author_session_path, method: :delete %></li>
+
+          </ul>
+        <li class="round-image-50",> <%= image_tag(current_author.avatar.url)  %></li>
+
+        </li>
+      <%else%>
+
+        <li><%= link_to 'LOG IN', new_author_session_path%>
+        </li>
+      <%end%>
+
+    </ul>
+  </nav>
+</header>
+
+
+
+
+
+
+
+

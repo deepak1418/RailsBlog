@@ -1,0 +1,14 @@
+<%provide(:page_title,@post.title)%>
+<% provide(:authors, "active")%>
+<div>
+  <td><%= link_to "Edit", edit_authors_post_path(@post), class:"btn btn-sm btn-success"%></td>
+  <td><%= link_to "Delete", authors_post_path(@post) ,method: :delete, data:{confirm: "Are you sure"},class:"btn btn-sm btn-danger"%></td>
+
+</div>
+<div class="row">
+  <div class="col-md-10  col-lg-12  text-xs-center">
+    <h1><%= @post.title%></h1>
+  <p><%=@post.display_day%></p>
+  <%=@post.body.html_safe%>
+   </div>
+</div>

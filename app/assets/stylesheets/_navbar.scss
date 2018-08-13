@@ -1,0 +1,94 @@
+.navbar {
+  border-radius: 0;
+  margin-bottom: 20px;
+  background-color: #1976D2;
+  .navbar-brand {
+    font-weight: bolder;
+    color: #CDDC39;
+    .light {
+      font-weight: 300;
+      color: #FFFFFF;
+
+    }
+  }
+  .navbar-toggler {
+    outline: none;
+  }
+  .nav-link{
+    color: #BBDEFB !important;
+    &.active{
+      color: #FFFFFF !important;
+    }
+
+
+  }
+  .nav-item.author-nav {
+    img {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      border: 1px solid #BBDEFB;
+    }
+  }
+
+
+}
+
+.collapse-bg {
+  padding: 0 !important;
+  .card {
+    margin-bottom: 0;
+    border-radius: 0;
+    border: none;
+  }
+}
+
+
+.collapse-bg .card .list-group-item {
+  padding: 0;
+  border-radius: 0 !important;
+  border-color: black;
+  a {
+    background-color: #1a1a1a;
+    color: #bdc3c7;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    &:active {
+      color: white;
+      border-bottom: none;
+    }
+  }
+}
+
+
+.round-image-50 {
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  text-align: center;
+  img { width: 100% }
+}
+
+.round-image-100 {
+  background-color: white;
+
+  border: 0px solid #d9d9d9;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 50px;
+  height: 200px;
+  width: 150px;
+  overflow: hidden;
+  text-align: center;
+  img { width: 100% }
+}
+.field_with_errors { display: inline; }
+
+
+

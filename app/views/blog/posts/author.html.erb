@@ -1,0 +1,97 @@
+        <div class="container" >
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">About <%=@author.f_name %> </h4>
+      </div>
+      <div class="modal-body">
+
+        <center>
+
+          <%= image_tag(@author.avatar.url,class:"img-thumbnail",name:"aboutme", width:"140" ,height:"140" ,border:"0" ,class:"img-circle",alt:"")  %>
+
+          <h3 class="media-heading"><%=@author.f_name %>&nbsp;<%=@author.l_name%><small><%=@author.country%></small></h3>
+          <span><strong>Skills: </strong></span>
+          <h6 class="label label-warning"><%=@author.profession%></h6>
+
+        </center>
+        <br>
+<center>
+        <div class="col-xs-12 col-sm-4 emphasis">
+          <h2><strong> <%=@author.following.count %></strong></h2>
+          <p><small><%=link_to "Following:", following_post_path(@author)%></small></p>
+
+<!--          <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>-->
+          <% if current_author.id != @author.id %>
+            <%if current_author.following?(@author)%>
+
+              <%= form_for(current_author.active_relationships.find_by(followed_id: @author.id),
+                           html: { method: :delete }) do |f| %>
+                <%= f.submit "Unfollow", class: "btn btn-success btn-block"  %>
+
+               <%end%>
+            <%else%>
+              <%= form_for(current_author.active_relationships.build) do |f| %>
+                <div><%= hidden_field_tag :followed_id, @author.id %></div>
+                <%= f.submit "Follow", class: "btn btn-success btn-block"%>
+
+              <%end%>
+            <% end %>
+          <%end%>
+
+        </div>
+        <div class="col-xs-12 col-sm-4 emphasis">
+          <h2><strong><%=@author.followers.count %></strong></h2>
+          <p><small><%=link_to "Followers:", followers_post_path(@author)%></small></p>
+          <% if current_author.id != @author.id %>
+
+        <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
+            <%end%>
+        </div>
+
+        <div class="col-xs-12 col-sm-4 emphasis">
+          <h2><strong><%=@author.posts.count%></strong></h2>
+          <p><small>Posts</small></p>
+          <% if current_author.id != @author.id %>
+
+          <div class="btn-group dropup btn-block" >
+            <button type="button" class="btn btn-primary " style="height:38px;width:260px"><span class="fa fa-gear"></span> Options </button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <%end%>
+            <br><br><br>
+
+
+            <ul class="dropdown-menu text-left" role="menu">
+              <li ><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email   </a></li>
+              <li class="divider"></li>
+
+              <li ><a href="#"><span class="fa fa-list pull-right"></span> Remove from a list &nbsp;&nbsp;&nbsp; </a></li>
+              <li class="divider"></li>
+
+              <li><a href="#"><span class="fa fa-warning pull-right"></span>Report this user for spam</a></li>
+            </ul>
+          </div>
+        </div>
+</center>
+
+        <p class="text-left"><br><br><strong>Bio: </strong><br>
+<%= @author.bio%>
+          <br>
+      </div>
+
+
+
+      <br>
+      <br>
+      <div class="row">
+        <%= render @posts%>
+      </div>
+
+        </div>                          
+
+    <!--      <div class="modal-footer">-->
+    <!--        <center>-->
+    <!--          <button type="button" class="btn btn-default" data-dismiss="modal">I've heard enough about Joe</button>-->
+    <!--        </center>-->
+    <!--      </div>-->
+

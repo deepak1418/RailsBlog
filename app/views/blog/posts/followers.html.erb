@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="media">
+        <% @authors.each do |author| %>
+
+          <div class="media-left">
+              <%= image_tag(author.avatar.url,class:"img-thumbnail",name:"aboutme", width:"140" ,height:"140" ,border:"0" ,class:"img-circle",alt:"") %>
+
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"> <%=link_to "#{author.name}",author_post_path(author.id)%></h4>
+            <%#=author.name%>
+            <%=truncate(author.bio,length: 120)%>
+          </div>
+
+          </div>
+
+          </div>
+        <% end %>
+        </div>
+</div>

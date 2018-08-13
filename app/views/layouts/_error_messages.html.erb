@@ -1,0 +1,28 @@
+
+<% if object.errors.any? %>
+
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+             style="right: 21px;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <% object.errors.full_messages.each do |msg| %>
+        <strong><%=msg%></strong>
+        <% end %>
+    </div>
+<% end %>
+
+
+
+<%# if flash.any?%>
+  <%# flash.keys.each do |key|%>
+<!--    <div class="alert alert-<%#= key.to_s %> alert alert-dismissible" role="alert">-->
+<!--      <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--        <span aria-hidden="true">&times;</span>-->
+<!--      </button>-->
+<!--      <strong><%#= flash[key]%></strong>-->
+<!--    </div>-->
+  <%#end%>
+<%#end%>
+
+<%#= yield %>

@@ -1,0 +1,189 @@
+
+
+
+
+<!--<div class="content-panel">-->
+
+<!--  <div class="form-horizontal">-->
+
+<!--</fieldse class="fieldset">-->
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%#= devise_error_messages! %>
+  <%= render 'layouts/error_messages', object: resource %>
+
+  <!--</fieldset>-->
+<!--      </div>-->
+<!--    </div>-->
+<div class="container">
+
+  <div class="view-account">
+
+    <section class="module">
+
+      <div class="module-inner">
+
+        <div class="side-bar">
+          <div class="user-info">
+<!--            <img class="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">-->
+      <%= image_tag(current_author.avatar.url,class:"img-profile img-circle img-responsive center-block")  %>
+
+            <ul class="meta list list-unstyled">
+              <li class="name"><%=current_author.name %><br>
+                <label class="label label-info"><%= current_author.profession%></label>
+              </li>
+              <li class="email",style="alignment: center;"><%=current_author.email%></li>
+              <small>Last logged in: <%=current_author.last_sign_in_at %></small>
+            </ul>
+          </div>
+          <nav class="side-menu">
+            <ul class="nav">
+              <li class="active"><a href="#"><span class="fa fa-user"></span> Profile</a></li>
+              <li><a href="#"><span class="fa fa-cog"></span> Settings</a></li>
+              <li><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
+
+              <li><a href="user-drive.html"><span class="fa fa-th"></span> Drive</a></li>
+              <li><a href="#"><span class="fa fa-clock-o"></span> Reminders</a></li>
+
+            </ul>
+          </nav>
+        </div>
+
+
+        <div class="content-panel">
+          <form class="form-horizontal">
+            <fieldset class="fieldset">
+
+                <fieldset class="fieldset">
+                  <h3 class="fieldset-title">About you</h3>
+
+                  <div class="form-group">
+                    <%= f.label :bio,class:"col-md-2  col-sm-3 col-xs-12 control-label" %>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                      <%= f.text_area :bio, value: current_author.bio,class: 'form-control' %>
+                      <br>
+
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <%= f.label :profession,class:"col-md-2  col-sm-3 col-xs-12 control-label" %>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                      <%= f.text_field :profession, value: current_author.profession,class: 'form-control' %>
+                      <br>
+
+
+                    </div>
+                  </div>
+
+                </fieldset>
+              <br>
+
+
+              <h3 class="fieldset-title">Personal Info</h3>
+
+              <div class="form-group avatar">
+                <figure class="figure col-md-2 col-sm-3 col-xs-12">
+                  <li class="img-rounded img-responsive"> <%= image_tag(current_author.avatar.url) %></li>
+                </figure>
+                <div class="form-inline col-md-10 col-sm-9 col-xs-12">
+                  <%= f.file_field :avatar,class: 'file-uploader pull-left' , multipart: true   %>
+<!--                  <button type="submit" class="btn btn-sm btn-default-alt pull-left">Update Image</button>-->
+                </div>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+
+
+              <div class="form-group">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">User Name</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <%= f.text_field :name, autofocus: "autofocus", autocomplete: "off",required: "required" ,class: 'form-control'%>
+                  <br>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">First Name</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <%= f.text_field :f_name, autofocus: "autofocus", autocomplete: "off",required: "required" ,class: 'form-control'%>
+                  <br>
+
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Last Name</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <%= f.text_field :l_name, autofocus: "autofocus", autocomplete: "off",required: "required" ,class: 'form-control'%>
+                  <br>
+                  <br>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Country</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <%= f.text_field :country, autofocus: "autofocus", autocomplete: "off",required: "required" ,class: 'form-control'%>
+                  <br>
+
+                </div>
+              </div>
+
+
+                <br>
+
+
+            </fieldset>
+            <fieldset class="fieldset">
+              <h3 class="fieldset-title">Contact Info</h3>
+              <div class="form-group">
+                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Email</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <i class="fa fa-google"></i>
+
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",class: 'form-control' %>
+                  <p class="help-block">This is the email </p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Instagram</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <i class="fa fa-instagram"></i>
+
+                  <%= f.text_field :insta_id, autofocus: true, autocomplete: "email",class: 'form-control' %>
+                  <p class="help-block">Your Instagram Link </p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2  col-sm-3 col-xs-12 control-label">GitHub</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                  <i class="fa fa-github"></i>
+                  <%= f.text_field :github_id, autofocus: true, autocomplete: "email",class: 'form-control' %>
+                  <p class="help-block">eg.  https://github.com/in/yourname</p>
+                </div>
+              </div>
+            </fieldset>
+
+
+
+                <hr>
+            <div class="form-group">
+              <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                  <%= f.submit"Update info", class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+              <%end%>
+<div class="container">
+  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: 'btn btn-danger' %>
+
+</div>
+
+<br><br>

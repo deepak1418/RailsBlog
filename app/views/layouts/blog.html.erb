@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= yield(:page_title) %> |ProBlog</title>
+
+
+<!--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+   <%= csrf_meta_tags %>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700|Montserrat:300,400,700" rel="stylesheet">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true%>
+  <script>
+
+      (function($) {
+          $.fn.menumaker = function(options) {
+              var cssmenu = $(this), settings = $.extend({
+                  format: "dropdown",
+                  sticky: false
+              }, options);
+              return this.each(function() {
+                  $(this).find(".button").on('click', function(){
+                      $(this).toggleClass('menu-opened');
+                      var mainmenu = $(this).next('ul');
+                      if (mainmenu.hasClass('open')) {
+                          mainmenu.slideToggle().removeClass('open');
+                      }
+                      else {
+                          mainmenu.slideToggle().addClass('open');
+                          if (settings.format === "dropdown") {
+                              mainmenu.find('ul').show();
+                          }
+                      }
+                  });
+                  cssmenu.find('li ul').parent().addClass('has-sub');
+                  multiTg = function() {
+                      cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
+                      cssmenu.find('.submenu-button').on('click', function() {
+                          $(this).toggleClass('submenu-opened');
+                          if ($(this).siblings('ul').hasClass('open')) {
+                              $(this).siblings('ul').removeClass('open').slideToggle();
+                          }
+                          else {
+                              $(this).siblings('ul').addClass('open').slideToggle();
+                          }
+                      });
+                  };
+                  if (settings.format === 'multitoggle') multiTg();
+                  else cssmenu.addClass('dropdown');
+                  if (settings.sticky === true) cssmenu.css('position', 'fixed');
+                  resizeFix = function() {
+                      var mediasize = 1000;
+                      if ($( window ).width() > mediasize) {
+                          cssmenu.find('ul').show();
+                      }
+                      if ($(window).width() <= mediasize) {
+                          cssmenu.find('ul').hide().removeClass('open');
+                      }
+                  };
+                  resizeFix();
+                  return $(window).on('resize', resizeFix);
+              });
+          };
+      })(jQuery);
+
+      (function($){
+          $(document).ready(function(){
+              $("#cssmenu").menumaker({
+                  format: "multitoggle"
+              });
+          });
+      })(jQuery);
+
+
+
+
+  </script>
+
+</head>
+
+<body>
+
+<%=render 'layouts/navbar'%>
+<br>
+<div class="container <%=controller_name %> <%= action_name %>">
+   <% if flash.any?%>
+      <% flash.keys.each do |key|%>
+        <div class="alert alert-success alert alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong><%= flash[key]%></strong>
+        </div>
+      <%end%>
+    <%end%>
+  <%= yield %>
+
+</div>
+</body>
+</html>
