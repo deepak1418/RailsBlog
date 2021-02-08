@@ -19,7 +19,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'puma', '~> 3.12'
 gem 'rmagick'
 
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
