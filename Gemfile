@@ -16,7 +16,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 
 gem "paperclip", "~> 6.0.0"
 # gem 'aws-sdk', '>= 2.0.0'# Use Puma as the app server
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 gem 'rmagick'
 
 gem 'carrierwave', '~> 1.0'
